@@ -5,10 +5,14 @@ import {base_url} from "../utils/constants.js";
 const Contact = () => {
     const [planets, setPlanets] = useState(['wait...']);
 
+    async function getPlanets() {
+        const res = await fetch(`${base_url}/v1/planets`);
+        const data = await res.json();
+        setPlanets(data.map(item => item.name));
+    }
+
     useEffect(() => {
-        fetch(`${base_url}/v1/planets`)
-            .then(res => res.json())
-            .then(data => setPlanets(data.map(item => item.name)));
+        getPlanets().then(() => console.log('Planets were loaded'));
     }, [])
 
     return (
