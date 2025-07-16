@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {base_url} from "../utils/constants.js";
+import Text from "./ui/Text.jsx";
 
 const OpeningCrawl = () => {
-    const [openingCrawl, setOpeningCrawl] = useState();
+    const [openingCrawl, setOpeningCrawl] = useState('Loading...');
 
     useEffect(() => {
         const opening_crawl = sessionStorage.getItem('opening_crawl');
@@ -19,19 +20,9 @@ const OpeningCrawl = () => {
         }
     }, [])
 
-    if (openingCrawl) {
-        return (
-            <p className="text-[1.7em] text-justify leading-[1.6]">{openingCrawl}</p>
-        );
-    } else {
-        return (
-            <p className="text-[1.7em] text-justify leading-[1.6]">
-                Loading...
-            </p>
-        );
-    }
-
-
+    return (
+        <Text>{openingCrawl}</Text>
+    )
 }
 
 export default OpeningCrawl;
